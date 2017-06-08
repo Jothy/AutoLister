@@ -1,0 +1,35 @@
+cd D:\DailyCheck
+python pyuic.py MainWindow.ui -o MainWindow.py
+
+pyuic5 MainWindow.ui -o MainWindow.py
+pyrcc5 Resource_file.qrc -o Resource_file_rc.py -py3
+
+------------------------------------------------------------------------------
+import compileall as cl
+cl.compile_dir("D:\DailyCheck")
+
+NB:This puts the compiled files in _pycache_
+
+-------------------------------------------------------------------------------
+#To include module that are not automatically binded by pyinstaller -use --hidden-import
+pyinstaller --hidden-import=pylinac -F --windowed --icon=icon.ico Start.py//Windowed arguments make exe run without opening cmd window
+PyInstaller -y -F --distpath="." -p "C:\Anaconda3\Lib\site-packages\PyQt4" Start.py
+
+#To compile with upx compresser
+pyinstaller --hidden-import=pylinac -F --windowed --upx-dir=D:\Dailycheck Start.py
+
+
+pyinstaller --hidden-import=[pylinac] -F Start.py
+
+-----------------------------------------------------------------------------
+Include these in the main.py file to include hidden import libraries while building .exe by PyInstaller
+#Hidden imports for .exe compilation
+import packaging
+import packaging.version
+import packaging.specifiers
+import packaging.requirements
+
+pyinstaller -F --windowed --icon=icon.ico Start.py
+
+----------------------------------------
+Git new brach test
